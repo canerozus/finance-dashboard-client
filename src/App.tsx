@@ -15,6 +15,7 @@ function App() {
         </ThemeProvider>
       </BrowserRouter>
     </div>
+    
   );
 }
 
