@@ -1,5 +1,4 @@
-import React from "react";
-import { Box, useMediaQuery, useTheme } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import DashBoardBox from "@/components/dashboardbox";
 
 type Props = {};
@@ -20,8 +19,8 @@ const gridTemplateSmall = `
 "e""f""f""f""g""g""g""h""h""h""h""i""i""j""j"`;
 
 const Dashboard = (props: Props) => {
-  const AboveMediumScreens = useMediaQuery("min-width: 1200px");
-  const { palette } = useTheme();
+  const AboveMediumScreens = useMediaQuery("(min-width: 1200px)");
+  
   return (
     <Box
       width="100%"
@@ -31,7 +30,7 @@ const Dashboard = (props: Props) => {
       sx={
         AboveMediumScreens
           ? {
-              gridTemplateColumns: "repeat(3, minmax(370px,1fr))",
+              gridTemplateColumns: "repeat(3, minmax(370px, 1fr))",
               gridTemplateRows: "repeat(10, minmax(60px, 1fr))",
               gridTemplateAreas: gridTemplateLarge,
             }
