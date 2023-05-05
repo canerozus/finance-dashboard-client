@@ -18,7 +18,7 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route
                 path="/predictions"
-                element={<div>predictions page</div>}
+                element={<div>Predictions page</div>}
               />
             </Routes>
           </Box>
