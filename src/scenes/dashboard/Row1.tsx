@@ -43,7 +43,7 @@ const Row1 = (props: Props) => {
         return {
           name: month.substring(0, 3),
           revenue: revenue,
-          profit: revenue-expenses,
+          profit: (revenue-expenses).toFixed(2),
         };
       })
     );
@@ -129,8 +129,8 @@ const Row1 = (props: Props) => {
       </DashBoardBox>
       <DashBoardBox gridArea="b">
         <BoxHeader
-          title="Revenue and Expenses"
-          subtitle="top line represents revenue, bottom line represents expenses"
+          title="Profit and Revenue"
+          subtitle="top line represents revenue, bottom line represents profit"
           sideText="+4%"
         />
         <ResponsiveContainer width="100%" height="100%">
