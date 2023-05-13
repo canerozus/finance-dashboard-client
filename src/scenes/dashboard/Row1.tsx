@@ -13,6 +13,8 @@ import {
   Line,
   Legend,
   LineChart,
+  BarChart,
+  Bar,
 } from "recharts";
 import { useTheme } from "@mui/material";
 import BoxHeader from "@/components/boxheader";
@@ -22,6 +24,18 @@ type Props = {};
 const Row1 = (props: Props) => {
   const { palette } = useTheme();
   const { data } = useGetKpisQuery();
+
+  const revenue = useMemo(() => {
+    return (
+      data &&
+      data[0].monthlyData.map(({ month, revenue }) => {
+        return {
+          name: month.substring(0, 3),
+          revenue: revenue,
+        };
+      })
+    );
+  }, [data]);
 
   const revenueExpenses = useMemo(() => {
     return (
@@ -43,12 +57,11 @@ const Row1 = (props: Props) => {
         return {
           name: month.substring(0, 3),
           revenue: revenue,
-          profit: (revenue-expenses).toFixed(2),
+          profit: (revenue - expenses).toFixed(2),
         };
       })
     );
   }, [data]);
-
 
   return (
     <>
@@ -127,6 +140,8 @@ const Row1 = (props: Props) => {
           </AreaChart>
         </ResponsiveContainer>
       </DashBoardBox>
+
+      {/* CHART 2 */}
       <DashBoardBox gridArea="b">
         <BoxHeader
           title="Profit and Revenue"
@@ -184,7 +199,31 @@ const Row1 = (props: Props) => {
           </LineChart>
         </ResponsiveContainer>
       </DashBoardBox>
-      <DashBoardBox gridArea="c"></DashBoardBox>
+
+      {/*  CHART 3  */}
+
+      <DashBoardBox gridArea="c">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart
+            width={500}
+            height={300}
+            data={revenue}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="revenue" fill={palette.primary[600]} />
+          </BarChart>
+        </ResponsiveContainer>
+      </DashBoardBox>
     </>
   );
 };
