@@ -203,24 +203,52 @@ const Row1 = (props: Props) => {
       {/*  CHART 3  */}
 
       <DashBoardBox gridArea="c">
+        <BoxHeader
+          title="Revenue Month by Month"
+          subtitle="graph representing the revenue month by month"
+          sideText="+4%"
+        />
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             width={500}
             height={300}
             data={revenue}
             margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
+              top: 17,
+              right: 15,
+              left: -5,
+              bottom: 58,
             }}
           >
-            
-            <XAxis dataKey="name" />
-            <YAxis />
+            <defs>
+              <linearGradient id="colorMonth" x1="0" y1="0" x2="0" y2="1">
+                <stop
+                  offset="5%"
+                  stopColor={palette.primary[300]}
+                  stopOpacity={0.8}
+                />
+                <stop
+                  offset="95%"
+                  stopColor={palette.primary[300]}
+                  stopOpacity={0}
+                />
+              </linearGradient>
+            </defs>
+            <CartesianGrid vertical={false} stroke={palette.grey[800]} />
+            <XAxis
+              dataKey="name"
+              axisLine={false}
+              tickLine={false}
+              style={{ fontSize: "10px" }}
+            />
+            <YAxis
+              axisLine={false}
+              tickLine={false}
+              style={{ fontSize: "10px" }}
+            />
             <Tooltip />
-            <Legend />
-            <Bar dataKey="revenue" fill={palette.primary[600]} />
+            
+            <Bar dataKey="revenue" fill="url(#colorMonth)" />
           </BarChart>
         </ResponsiveContainer>
       </DashBoardBox>
