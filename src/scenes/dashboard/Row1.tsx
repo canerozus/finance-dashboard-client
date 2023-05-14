@@ -247,7 +247,7 @@ const Row1 = (props: Props) => {
               style={{ fontSize: "10px" }}
             />
             <Tooltip />
-            
+
             <Bar dataKey="revenue" fill="url(#colorMonth)" />
           </BarChart>
         </ResponsiveContainer>
