@@ -4,39 +4,49 @@ import { useGetProductsQuery } from "@/state/api";
 import React, { useMemo } from "react";
 import {
   CartesianGrid,
-  Legend,
+  Cell,
   Line,
   LineChart,
+  Pie,
+  PieChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
-import { useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { useGetKpisQuery } from "@/state/api";
+import FlexBetween from "@/components/flexbetween";
 
 type Props = {};
-
+const pieData = [
+  { name: "Group A", value: 600 },
+  { name: "Group B", value: 400 },
+];
 const Row2 = (props: Props) => {
   const { data: operationalData } = useGetKpisQuery();
-  const { data: productData  } = useGetProductsQuery();
+  const { data: productData } = useGetProductsQuery();
   const { palette } = useTheme();
+  const pieColor = [palette.primary[800], palette.primary[300]];
 
-const operationalExpenses = useMemo(()=> {
-  return (
-    operationalData &&
-    operationalData[0].monthlyData.map(({ month, operationalExpenses,nonOperationalExpenses }) => {
-      return {
-        name: month.substring(0, 3),
-        "Operational Expenses": operationalExpenses,
-        "Non Operational Expenses": nonOperationalExpenses
-      };
-    })
-  );
-},[operationalData])
+  const operationalExpenses = useMemo(() => {
+    return (
+      operationalData &&
+      operationalData[0].monthlyData.map(
+        ({ month, operationalExpenses, nonOperationalExpenses }) => {
+          return {
+            name: month.substring(0, 3),
+            "Operational Expenses": operationalExpenses,
+            "Non Operational Expenses": nonOperationalExpenses,
+          };
+        }
+      )
+    );
+  }, [operationalData]);
 
   return (
     <>
+      {/* CHART 4 */}
       <DashBoardBox gridArea="d">
         <BoxHeader
           title="Operational vs Non-Operational Expenses"
@@ -89,7 +99,55 @@ const operationalExpenses = useMemo(()=> {
         </ResponsiveContainer>
       </DashBoardBox>
 
-      <DashBoardBox gridArea="e"></DashBoardBox>
+      {/* CHART 5  */}
+      <DashBoardBox gridArea="e">
+        <BoxHeader title="Campaigns and Targets" sideText="+4%" />
+        <FlexBetween mt="0.25rem" gap="1.5rem" pr="1rem">
+          <PieChart
+            width={110}
+            height={100}
+            margin={{
+              top: 0,
+              right: -10,
+              left: 10,
+              bottom: 0,
+            }}
+          >
+            <Pie
+              stroke="none"
+              data={pieData}
+              innerRadius={18}
+              outerRadius={38}
+              paddingAngle={2}
+              dataKey="value"
+            >
+              {pieData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={pieColor[index]} />
+              ))}
+            </Pie>
+          </PieChart>
+          <Box ml="-0.7rem" flexBasis="40%" textAlign="center">
+            <Typography variant="h5">Target Sales</Typography>
+            <Typography m="0.3rem 0" variant="h3" color={palette.primary[300]}>
+              83
+            </Typography>
+            <Typography variant="h6">
+              Finance goals of the campaign that is desired
+            </Typography>
+          </Box>
+          <Box flexBasis="40%">
+            <Typography variant="h5">Losses in Revenue</Typography>
+            <Typography variant="h6">Losses are down 25%</Typography>
+            <Typography mt="0.4rem" variant="h5">
+              Profit Margins
+            </Typography>
+            <Typography variant="h6">
+              Margins are up by 30% from last month.
+            </Typography>
+          </Box>
+        </FlexBetween>
+      </DashBoardBox>
+
       <DashBoardBox gridArea="f"></DashBoardBox>
     </>
   );
