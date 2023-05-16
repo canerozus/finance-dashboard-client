@@ -1,7 +1,6 @@
 import DashBoardBox from "@/components/dashboardbox";
 import { useGetKpisQuery } from "@/state/api";
 import { useMemo } from "react";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import {
   AreaChart,
   Area,
@@ -19,9 +18,9 @@ import {
 import { useTheme } from "@mui/material";
 import BoxHeader from "@/components/boxheader";
 
-type Props = {};
 
-const Row1 = (props: Props) => {
+
+const Row1 = () => {
   const { palette } = useTheme();
   const { data } = useGetKpisQuery();
 

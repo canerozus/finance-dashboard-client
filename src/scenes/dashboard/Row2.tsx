@@ -1,7 +1,7 @@
 import BoxHeader from "@/components/boxheader";
 import DashBoardBox from "@/components/dashboardbox";
 import { useGetProductsQuery } from "@/state/api";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import {
   CartesianGrid,
   Cell,
@@ -21,12 +21,12 @@ import { Box, Typography, useTheme } from "@mui/material";
 import { useGetKpisQuery } from "@/state/api";
 import FlexBetween from "@/components/flexbetween";
 
-type Props = {};
+
 const pieData = [
   { name: "Group A", value: 600 },
   { name: "Group B", value: 400 },
 ];
-const Row2 = (props: Props) => {
+const Row2 = () => {
   const { data: operationalData } = useGetKpisQuery();
   const { data: productData } = useGetProductsQuery();
   const { palette } = useTheme();
