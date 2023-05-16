@@ -21,7 +21,6 @@ import { Box, Typography, useTheme } from "@mui/material";
 import { useGetKpisQuery } from "@/state/api";
 import FlexBetween from "@/components/flexbetween";
 
-
 const pieData = [
   { name: "Group A", value: 600 },
   { name: "Group B", value: 400 },
@@ -137,7 +136,7 @@ const Row2 = () => {
               paddingAngle={2}
               dataKey="value"
             >
-              {pieData.map((entry, index) => (
+              {pieData.map((_, index) => (
                 <Cell key={`cell-${index}`} fill={pieColor[index]} />
               ))}
             </Pie>
