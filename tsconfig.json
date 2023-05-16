@@ -25,6 +25,5 @@
     "types": ["vite/client"]
   },
   "include": ["src"],
-  "ignoreDuringBuilds":true,
   "references": [{ "path": "./tsconfig.node.json" }]
 }
