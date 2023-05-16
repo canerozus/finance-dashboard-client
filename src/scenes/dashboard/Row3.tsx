@@ -162,8 +162,8 @@ const Row3 = (props: Props) => {
 
       {/* CHART 9  */}
       <DashBoardBox gridArea="i">
-        <BoxHeader title="Expense Breakdown By Category" sideText="+4%" />
-        <FlexBetween mt="0.5rem" gap="0.5rem" p="0 1rem" textAlign="center">
+        <BoxHeader  title="Expense Breakdown By Category" sideText="+4%" />
+        <FlexBetween gap="0.5rem" p="0 1rem" textAlign="center">
           {pieChartData?.map((data, i) => (
             <Box key={`${data[0].name}-${i}`}>
               <PieChart width={110} height={100}>
@@ -176,7 +176,7 @@ const Row3 = (props: Props) => {
                   dataKey="value"
                 >
                   {data.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={pieColors[index]} />
+                    <Cell  key={`cell-${index}`} fill={pieColors[index]} />
                   ))}
                 </Pie>
               </PieChart>
