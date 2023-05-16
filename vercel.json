@@ -1,0 +1,13 @@
+{
+    "build": {
+      "env": {
+        "CI": "true"
+      },
+      "ignore": [
+        "/node_modules/**"
+      ],
+      "scripts": {
+        "lint": "eslint . --max-warnings 0"
+      }
+    }
+  }
