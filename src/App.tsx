@@ -19,7 +19,7 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route
                 path="/predictions"
-                element={<div>{<Predictions />}</div>}
+                element={<Predictions />}
               />
             </Routes>
           </Box>
